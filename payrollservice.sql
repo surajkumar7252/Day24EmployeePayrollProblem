@@ -13,7 +13,11 @@ SALARY double Not Null,
 START date Not Null,
 primary key(ID)); 
 
+#UseCase 3 : Creating Payroll Data in the table.
 
+insert into employee_payroll(NAME,SALARY,START) values ('Surajmal Kumar',50000.00,'2020-09-16'),
+                                                        ('Prakash',85000.00,'2016-06-14'),
+                                                        ('Raushan',91000.00,'2018-02-23');
 
 
 
