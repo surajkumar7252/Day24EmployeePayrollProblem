@@ -23,6 +23,11 @@ insert into employee_payroll(NAME,SALARY,START) values ('Surajmal Kumar',50000.0
 
 select * from employee_payroll;
 
+#UseCase 5 : Retrieving salary data for an employee joined between a date range.
+
+select SALARY from employee_payroll where START between cast('2016-06-10' as date) and date(now());
+select SALARY from employee_payroll where START between cast('2016-06-10' as date) and  cast('2018-11-11' as date);
+
 
 
 
