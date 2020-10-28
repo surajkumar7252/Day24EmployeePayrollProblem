@@ -35,8 +35,17 @@ update employee_payroll set GENDER = 'M' where ID =1;
 update employee_payroll set GENDER = 'M' where NAME ='Raushan';
 update employee_payroll set GENDER = 'M' where NAME ='Prakash';
 
+#UseCase 7 : finding sum,average,minimum,maximum,count to do analysis by GENDER.
 
-
-
+select sum(SALARY) from employee_payroll where GENDER ='M' group by GENDER ASC;
+select avg(SALARY) from employee_payroll where GENDER ='M' group by GENDER ASC;
+select min(SALARY) from employee_payroll where GENDER ='M' group by GENDER ASC;
+select max(SALARY) from employee_payroll where GENDER ='M' group by GENDER ASC;
+select count(SALARY) from employee_payroll where GENDER ='M' group by GENDER ASC;
+select sum(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
+select avg(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
+select min(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
+select max(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
+select count(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
 
 
