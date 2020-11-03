@@ -63,3 +63,11 @@ alter table employee_payroll add deductions double not null after basic_pay;
 alter table employee_payroll add TAXABLE_PAY double not null after deductions;
 alter table employee_payroll add INCOME_TAX double not null after TAXABLE_PAY;
 alter table employee_payroll add NET_PAY double not null after INCOME_TAX;
+
+#UseCase 10 : Updating Employee Data.
+
+
+insert into employee_payroll (NAME, DEPARTMENT,PHONE_NUMBER, GENDER, basic_pay, deductions, TAXABLE_PAY, INCOME_TAX, NET_PAY, START) values
+('Terisa', 'Marketing',878987898789, 'F', 15000000.00, 5000000.00, 10000000.00,1000000.00, 20000000.00, '2017-10-05');
+update employee_payroll set DEPARTMENT='Finance' where NAME='Terisa';
+
