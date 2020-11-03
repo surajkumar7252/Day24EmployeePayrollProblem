@@ -54,3 +54,12 @@ alter table employee_payroll add ADDRESS varchar(250) after NAME;
 alter table employee_payroll alter ADDRESS set default 'NON';
 alter table employee_payroll add PHONE_NUMBER varchar(250) not null after ADDRESS;
 alter table employee_payroll add DEPARTMENT varchar(250) not null  after address;
+
+select * from employee_payroll;
+#UseCase 9 : Extending Employee Payroll Data.
+
+alter table employee_payroll add basic_pay double not null after DEPARTMENT ;
+alter table employee_payroll add deductions double not null after basic_pay;
+alter table employee_payroll add TAXABLE_PAY double not null after deductions;
+alter table employee_payroll add INCOME_TAX double not null after TAXABLE_PAY;
+alter table employee_payroll add NET_PAY double not null after INCOME_TAX;
