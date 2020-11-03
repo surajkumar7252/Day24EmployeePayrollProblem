@@ -48,4 +48,9 @@ select min(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
 select max(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
 select count(SALARY) from employee_payroll where GENDER ='M' group by GENDER desc;
 
+#UseCase 8 : Extending Employee Payroll Data.
 
+alter table employee_payroll add ADDRESS varchar(250) after NAME;
+alter table employee_payroll alter ADDRESS set default 'NON';
+alter table employee_payroll add PHONE_NUMBER varchar(250) not null after ADDRESS;
+alter table employee_payroll add DEPARTMENT varchar(250) not null  after address;
