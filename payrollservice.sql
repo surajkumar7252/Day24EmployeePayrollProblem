@@ -143,3 +143,12 @@ select GENDER,max(NET_PAY) from employee inner join payroll on employee.PERSONAL
 select GENDER,count(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
 
 
+#UseCase 12 : Retrieving data.
+
+select * from (employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID);
+select NET_PAY from (employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID) where EMP_NAME='Suraj';
+select * from (employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID) where 
+start between cast('2018-01-01' as date) and date(now());
+select GENDER,count(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
+
+
