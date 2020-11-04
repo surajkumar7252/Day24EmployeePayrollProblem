@@ -71,3 +71,75 @@ insert into employee_payroll (NAME, DEPARTMENT,PHONE_NUMBER, GENDER, basic_pay, 
 ('Terisa', 'Marketing',878987898789, 'F', 15000000.00, 5000000.00, 10000000.00,1000000.00, 20000000.00, '2017-10-05');
 update employee_payroll set DEPARTMENT='Finance' where NAME='Terisa';
 
+#UseCase 11 : ER representation.
+
+create table organisation(
+ORGANISATION_ID int unsigned not null auto_increment,
+ORGANISATION_NAME varchar(250) not null,
+primary key(ORGANISATION_ID)
+);
+
+insert into organisation (ORGANISATION_NAME) values ('ADAPT');
+insert into organisation (ORGANISATION_NAME) values ('Bridgelabs');
+
+create table employee(
+PERSONAL_ID int unsigned not null auto_increment,
+EMP_NAME varchar(250) not null,
+ORGANISATION_ID int unsigned not null,
+PHONE_NUMBER varchar(250) not null,
+ADDRESS varchar(250) not null,
+GENDER char(1),
+START date not null, 
+primary key (PERSONAL_ID),
+foreign key (ORGANISATION_ID) references organisation(ORGANISATION_ID)
+);
+
+
+insert into employee (EMP_NAME,ORGANISATION_ID,PHONE_NUMBER,ADDRESS,GENDER,START) values ('Suraj', 2, '88888899999','Dhanbad', 'M','20-10-16');
+insert into employee (EMP_NAME,ORGANISATION_ID,PHONE_NUMBER,ADDRESS,GENDER,START) values ('ravi', 1, '8855223366','Gaya', 'M','12-09-17');
+
+
+create table department(
+ID int unsigned not null auto_increment,
+DEP_NAME varchar(250) not null,
+primary key(ID)
+);
+
+insert into department (DEP_NAME) values ('Sales');
+insert into department (DEP_NAME) values ('Marketing');
+insert into department (DEP_NAME) values ('Finance');
+
+
+
+create table payroll(
+PERSONAL_ID int unsigned not null,
+BASIC_PAY double not null,
+DEDUCTIONS double not null,
+TAXABLE_INCOME double not null,
+INCOME_TAX double not null,
+NET_PAY double not null,
+foreign key (PERSONAL_ID) references employee(PERSONAL_ID)
+);
+
+insert into payroll (PERSONAL_ID, BASIC_PAY, DEDUCTIONS, TAXABLE_INCOME, INCOME_TAX, NET_PAY) values 
+(1, 800000.00, 3500000.00,4200000.00,1300000.00,8000000.00);
+insert into payroll (PERSONAL_ID, BASIC_PAY, DEDUCTIONS, TAXABLE_INCOME, INCOME_TAX, NET_PAY) values 
+(1, 750000.00, 4000000.00,4300000.00,1200000.00,8500000.00);
+
+create table employee_dept(
+PERSONAL_ID int unsigned not null,
+ID int unsigned not null,
+foreign key (PERSONAL_ID) references employee(PERSONAL_ID),
+foreign key (ID) references department(ID)
+);
+insert into employee_dept (PERSONAL_ID, ID) values (1, 1);
+insert into employee_dept(PERSONAL_ID, ID) values (2,2);
+
+
+select GENDER,sum(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
+select GENDER,avg(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
+select GENDER,min(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
+select GENDER,max(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
+select GENDER,count(NET_PAY) from employee inner join payroll on employee.PERSONAL_ID=payroll.PERSONAL_ID  group by GENDER ;
+
+
